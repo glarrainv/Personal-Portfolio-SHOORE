@@ -1,4 +1,3 @@
-<img width="1366" height="768" alt="Redreport" src="https://github.com/user-attachments/assets/f26b01e7-589f-4bbc-84e8-0f59b2944870" />
 
 ![forthebadge](https://forthebadge.com/images/badges/made-with-html_css.svg)
 ![Notion](https://img.shields.io/badge/Notion-%23000000.svg?style=for-the-badge&logo=notion&logoColor=white)
