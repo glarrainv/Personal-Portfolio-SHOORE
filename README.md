@@ -1,7 +1,12 @@
 
 ![forthebadge](https://forthebadge.com/images/badges/made-with-html_css.svg)
+![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
 ![Notion](https://img.shields.io/badge/Notion-%23000000.svg?style=for-the-badge&logo=notion&logoColor=white)
+![Cloudflare](https://img.shields.io/badge/Cloudflare-F38020?style=for-the-badge&logo=Cloudflare&logoColor=white)
+
 </br>
+
+# **SHOORE - Gaspar's Personal Portfolio**
 
 <a> [![Forks][forks-shield]][forks-url] </a>
 <a> [![Stargazers][stars-shield]][stars-url] </a>
@@ -10,12 +15,6 @@
 
 <a> [![project_license][license-shield]][license-url] </a>
 </br>
-
-<p align="center">
-<img src="https://github.com/user-attachments/assets/c10795ff-aeb5-47f8-b2e7-82880c1c63a7"/>
-</p>
-
-# **SHOORE - Gaspar's Personal Portfolio**
 
 ## Features:
 - Showcases my developer profile, including activities, clubs, and my very confusing name.
@@ -42,8 +41,8 @@
 [forks-url]: https://github.com/glarrainv/RedReport/network/members
 [stars-shield]: https://img.shields.io/github/stars/glarrainv/Personal-Portfolio-SHOORE.svg?style=for-the-badge
 
-[stars-url]: https://github.com/glarrainv/RedReport/stargazers
+[stars-url]: https://github.com/glarrainv/Personal-Portfolio-SHOORE/stargazers
 [issues-shield]: https://img.shields.io/github/issues/glarrainv/Personal-Portfolio-SHOORE.svg?style=for-the-badge
-[issues-url]: https://github.com/glarrainv/RedReport/issues
+[issues-url]: https://github.com/glarrainv/Personal-Portfolio-SHOORE/issues
 [license-shield]:  https://img.shields.io/github/license/glarrainv/Personal-Portfolio-SHOORE.svg?style=for-the-badge
-[license-url]: https://github.com/glarrainv/RedReport/blob/main/LICENSE
+[license-url]: https://github.com/glarrainv/Personal-Portfolio-SHOORE/blob/main/LICENSE
