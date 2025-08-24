@@ -51,8 +51,8 @@ function getFallbackProjects() {
   ];
 }
 
-/* HTML Project Card rendering*/
-function renderProjects(projects) {
+/* HTML Done Project Card rendering*/
+function renderDoneProjects(projects) {
   const projectsContainer = document.querySelector("#Projects .grid");
 
   if (!projectsContainer) {
@@ -72,6 +72,9 @@ function renderProjects(projects) {
   filteredProjects.forEach((project) => {
     const projectElement = document.createElement("div");
     projectElement.className = "project-card lightyellowbg shade";
+    if (project.projectLink) {
+      projectElement.className += " link";
+    }
     projectElement.onclick = () => {
       if (project.projectLink) {
         window.open(project.projectLink, "_blank");
@@ -106,11 +109,11 @@ export async function initProjects() {
     console.log("Fetching projects from backend...");
     const projects = await fetchProjectsFromBackend();
     console.log(`Found ${projects.length} projects.`);
-    renderProjects(projects);
+    renderDoneProjects(projects);
   } catch (error) {
     console.error("Failed to load projects from backend:", error);
     console.log("Using fallback static content");
-    renderProjects(getFallbackProjects());
+    renderDoneProjects(getFallbackProjects());
   }
 }
 

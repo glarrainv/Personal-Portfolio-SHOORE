@@ -102,13 +102,13 @@ Coding 4 Good Developer </br>
 Hesburgh Digital Research Award Recipient </br>`,
     `
     Badminton Club Tournament Travel Team Member </br>
-    Dunne Hall Resident </br> 
-    Shoore Founder </br> 
+    In Love with Sailing </br> 
+    Looking for a Mountain to Hike </br> 
     `,
     `
-    </br>
-    Developer Behind 10+ Failed Projects </br> 
-    </br> 
+    Working at Hesburgh Libraries Circulation Desk</br>
+    Carrying an Idea Notebook </br> 
+    Most Likely Studying with my Girlfriend</br> 
     `,
   ];
   const diffbar = document.getElementById("diffbar");

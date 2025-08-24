@@ -274,7 +274,6 @@ p {
   z-index: 2 !important;
 }
 /** Section 3 - Projects **/
-/*** Animated Profile Pic ***/
 .grid {
   width: 100%;
   display: grid;
@@ -285,8 +284,8 @@ p {
 }
 
 .project-card {
-  height: 60%;
-  min-height: 200px;
+  height: 100%;
+  min-height: 220px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -294,13 +293,13 @@ p {
   padding: 5px;
   box-sizing: border-box;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: no-drop;
 }
 
 .project-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
-
 #projectdesc {
   margin-bottom: 75px;
 }
