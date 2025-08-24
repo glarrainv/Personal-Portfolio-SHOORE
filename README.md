@@ -11,8 +11,6 @@
 <a> [![Forks][forks-shield]][forks-url] </a>
 <a> [![Stargazers][stars-shield]][stars-url] </a>
 <a> [![Issues][issues-shield]][issues-url]</a>
-</br>
-
 <a> [![project_license][license-shield]][license-url] </a>
 </br>
 
