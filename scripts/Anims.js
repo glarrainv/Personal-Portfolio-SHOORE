@@ -94,7 +94,7 @@ Technology Nerd </br>
     `
 University of Notre Dame Sophomore </br>
 Business Analytics Major </br>
-Chinese & Computing and Digital Technnologies Minor </br>
+Chinese & Computing and Digital Technologies Minor </br>
     `,
     `
 Data Club Event Planning Co-Director </br>
@@ -102,12 +102,12 @@ Coding 4 Good Developer </br>
 Hesburgh Digital Research Award Recipient </br>`,
     `
     Badminton Club Tournament Travel Team Member </br>
-    In Love with Sailing </br> 
-    Looking for a Mountain to Hike </br> 
+    Founder of Redreport Campus Safety Tool </br> 
+    Working at Hesburgh Libraries Circulation Desk </br> 
     `,
     `
-    Working at Hesburgh Libraries Circulation Desk</br>
-    Carrying an Idea Notebook </br> 
+    Struggling with my Chinese homework (Again)</br>
+    Carrying an Idea Notebook At All Times</br> 
     Most Likely Studying with my Girlfriend</br> 
     `,
   ];
@@ -137,7 +137,7 @@ Hesburgh Digital Research Award Recipient </br>`,
   var nametoshow = document.querySelector("." + barDiffs[CurrentDiff]);
   var label = document.querySelector("#diflabel");
   var desc = document.querySelector("#difdesc");
-  label.innerHTML = barDiffs[CurrentDiff];
+  label.innerHTML = "Name Difficulty: " + barDiffs[CurrentDiff];
   desc.innerHTML = descDiffs[CurrentDiff];
   if (nametoshow) nametoshow.classList.remove("transp");
   const intervals = 10 * CurrentDiff;
@@ -147,30 +147,10 @@ Hesburgh Digital Research Award Recipient </br>`,
   diffbar.style.width = `${currentWidth}%`;
 }
 
-function SquareProfile() {
-  clearInterval(IntervalChange);
-  var DevProfile = document.getElementById("profile");
-  // DevProfile picture shake
-  var frames = document.getElementsByClassName("sqr-dev");
-
-  DevProfile.classList.remove("transp");
-  DevProfile.classList.add("slide-down");
-
-  IntervalChange = setInterval(() => {
-    //Create random transformation
-    for (let i = 0; i < frames.length; i++) {
-      var translate = `translate3D(${RandomNum(0, 30, 3)}px, ${RandomNum(
-        0,
-        30,
-        3
-      )}px, ${RandomNum(0, 30, 3)}px)`;
-      // APply random transformation
-      frames[i].style["transform"] = translate;
-    }
-  }, 1000);
-}
 function RandomNum(max, min, dec) {
   return Math.round(Math.random() * (max - min), dec) + min;
 }
-
+function ScrollIntoView(id) {
+  document.getElementById(id).scrollIntoView({ behavior: "smooth" });
+}
 //Vertical Slideshow

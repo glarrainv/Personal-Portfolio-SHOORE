@@ -14,7 +14,6 @@ function Snap() {
     animateWave("wave", [0.49, 0.65, 0.99], [0.03, 0.04, 0.01]);
   } else if (currentSlide == 1) {
     animateWave("wave2", [0.4, 0.45, 0.38], [0.005, 0.004, 0.006]);
-    SquareProfile();
   }
 }
 

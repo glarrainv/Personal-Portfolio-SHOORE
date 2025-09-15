@@ -52,38 +52,39 @@ function getFallbackProjects() {
 }
 
 /* HTML Done Project Card rendering*/
-function renderDoneProjects(projects) {
+function renderProjects(projects) {
   const projectsContainer = document.querySelector("#Projects .grid");
+  const progressContainer = document.querySelector("#Progress .grid");
 
   if (!projectsContainer) {
     console.error("Could not find projects container");
     return;
   }
-
-  /* Safety Clear */
-  projectsContainer.innerHTML = "";
+  DoneProjects();
+  CurrentProjects();
 
   /* Completed Projects */
-  const filteredProjects = projects.filter(
-    (project) => project.status == "Done"
-  );
+  function DoneProjects() {
+    const filteredProjects = projects.filter(
+      (project) => project.status == "Done"
+    );
 
-  /* Element Creation */
-  filteredProjects.forEach((project) => {
-    const projectElement = document.createElement("div");
-    projectElement.className = "project-card lightyellowbg shade";
-    if (project.projectLink) {
-      projectElement.className += " link";
-    }
-    projectElement.onclick = () => {
+    /* Element Creation */
+    filteredProjects.forEach((project) => {
+      const projectElement = document.createElement("div");
+      projectElement.className = "project-card lightyellowbg shade";
       if (project.projectLink) {
-        window.open(project.projectLink, "_blank");
+        projectElement.className += " link";
       }
-    };
+      projectElement.onclick = () => {
+        if (project.projectLink) {
+          window.open(project.projectLink, "_blank");
+        }
+      };
 
-    const toolsString = project.tools ? project.tools.join(", ") : "";
+      const toolsString = project.tools ? project.tools.join(", ") : "";
 
-    projectElement.innerHTML = `
+      projectElement.innerHTML = `
       <div class="text z-2 pos-rel slide-right" style="width: 100%;">
         <h2 class="sm">${project.title || "Untitled Project"}</h2>
         <h4 class="xs fw-light m-0"><i>${project.description || ""}</i></h4>
@@ -99,8 +100,54 @@ function renderDoneProjects(projects) {
       </div>
     `;
 
-    projectsContainer.appendChild(projectElement);
-  });
+      projectsContainer.appendChild(projectElement);
+    });
+  }
+  function CurrentProjects() {
+    const filteredProjects = projects
+      .reverse()
+      .filter((project) => project.status == "In progress");
+
+    /* Element Creation */
+    filteredProjects.forEach((project) => {
+      const progressElement = document.createElement("div");
+      progressElement.className = "project-banner shade";
+      if (project.Image) {
+        console.log(project.Image);
+        progressElement.style.backgroundImage = `url('${project.Image}')`;
+        progressElement.style.backgroundSize = `cover`;
+      } else {
+        if (project.projectLink) {
+          progressElement.className += " link";
+        }
+
+        progressElement.onclick = () => {
+          if (project.projectLink) {
+            window.open(project.projectLink, "_blank");
+          }
+        };
+
+        const toolsString = project.tools ? project.tools.join(", ") : "";
+
+        progressElement.innerHTML = `
+      <div class="text z-2 pos-rel slide-right" style="width: 100%;">
+        <h2 class="sm">${project.title || "Untitled Project"}</h2>
+        <h4 class="xs fw-light m-0"><i>${project.description || ""}</i></h4>
+        <h6 class="m-1">${toolsString}</h6>
+        <div class="project-details">
+          <div class="status m-1"><small>Status: ${
+            project.status || ""
+          }</small></div>
+          <div class=" date m-0"><small>Date Range: ${
+            project.dateRange || ""
+          }</small></div>
+        </div>
+      </div>
+    `;
+      }
+      progressContainer.appendChild(progressElement);
+    });
+  }
 }
 
 /* Website Loading Display */
@@ -109,11 +156,11 @@ export async function initProjects() {
     console.log("Fetching projects from backend...");
     const projects = await fetchProjectsFromBackend();
     console.log(`Found ${projects.length} projects.`);
-    renderDoneProjects(projects);
+    renderProjects(projects);
   } catch (error) {
     console.error("Failed to load projects from backend:", error);
     console.log("Using fallback static content");
-    renderDoneProjects(getFallbackProjects());
+    renderProjects(getFallbackProjects());
   }
 }
 
