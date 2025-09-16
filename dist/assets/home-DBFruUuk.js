@@ -8,7 +8,7 @@
           <div class=" date m-0"><small>Date Range: ${e.dateRange||""}</small></div>
         </div>
       </div>
-    `,n.appendChild(r)})}function t(){s.reverse().filter(e=>e.status=="In progress").forEach(e=>{const r=document.createElement("div");if(r.className="project-banner shade",e.projectLink&&(r.className+=" link"),e.Image)console.log(e.Image),r.style.backgroundImage=`url('${e.Image}')`;else{r.onclick=()=>{e.projectLink&&window.open(e.projectLink,"_blank")};const l=e.tools?e.tools.join(", "):"";r.innerHTML=`
+    `,n.appendChild(r)})}function t(){s.reverse().filter(e=>e.status=="In progress").forEach(e=>{const r=document.createElement("div");if(r.className="project-banner shade",e.projectLink&&(r.className+=" link",r.onclick=()=>{window.open(e.projectLink,"_blank")}),e.Image)console.log(e.Image),r.style.backgroundImage=`url('${e.Image}')`;else{const l=e.tools?e.tools.join(", "):"";r.innerHTML=`
       <div class="text z-2 pos-rel slide-right" style="width: 100%;">
         <h2 class="sm">${e.title||"Untitled Project"}</h2>
         <h4 class="xs fw-light m-0"><i>${e.description||""}</i></h4>

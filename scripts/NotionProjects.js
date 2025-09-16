@@ -114,18 +114,15 @@ function renderProjects(projects) {
       progressElement.className = "project-banner shade";
       if (project.projectLink) {
         progressElement.className += " link";
+        progressElement.onclick = () => {
+          window.open(project.projectLink, "_blank");
+        };
       }
 
       if (project.Image) {
         console.log(project.Image);
         progressElement.style.backgroundImage = `url('${project.Image}')`;
       } else {
-        progressElement.onclick = () => {
-          if (project.projectLink) {
-            window.open(project.projectLink, "_blank");
-          }
-        };
-
         const toolsString = project.tools ? project.tools.join(", ") : "";
 
         progressElement.innerHTML = `
