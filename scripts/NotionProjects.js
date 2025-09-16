@@ -112,15 +112,14 @@ function renderProjects(projects) {
     filteredProjects.forEach((project) => {
       const progressElement = document.createElement("div");
       progressElement.className = "project-banner shade";
+      if (project.projectLink) {
+        progressElement.className += " link";
+      }
+
       if (project.Image) {
         console.log(project.Image);
         progressElement.style.backgroundImage = `url('${project.Image}')`;
-        progressElement.style.backgroundSize = `cover`;
       } else {
-        if (project.projectLink) {
-          progressElement.className += " link";
-        }
-
         progressElement.onclick = () => {
           if (project.projectLink) {
             window.open(project.projectLink, "_blank");
