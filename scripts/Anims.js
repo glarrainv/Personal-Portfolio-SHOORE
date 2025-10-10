@@ -80,6 +80,21 @@ function animateWave(id, amplitude, frequency) {
 }
 // Name Difficulty
 var CurrentDiff;
+var clickHintAnimationFrameId;
+
+function animateClickHint() {
+  const clickSvg = document.getElementById("clicksvg");
+  if (clickSvg) {
+    clickSvg.classList.add("click-animation");
+  }
+}
+
+function stopClickHintAnimation() {
+  const clickSvg = document.getElementById("clicksvg");
+  if (clickSvg) {
+    clickSvg.classList.remove("click-animation");
+  }
+}
 function DiffIncrease() {
   //Constants
   const startw = 20;
@@ -153,4 +168,27 @@ function RandomNum(max, min, dec) {
 function ScrollIntoView(id) {
   document.getElementById(id).scrollIntoView({ behavior: "smooth" });
 }
-//Vertical Slideshow
+
+function createGust() {
+  const windContainer = document.getElementById("Page");
+  const gust = document.createElement("div");
+  gust.className = "wind-gust";
+
+  const yPosition = Math.random() * window.innerHeight;
+  const width = Math.random() * 150 + 50;
+  const height = Math.random() * 2 + 5;
+  const opacity = Math.random() * 0.5 + 0.1;
+  const duration = Math.random() * 8 + 5;
+
+  gust.style.top = `${yPosition}px`;
+  gust.style.width = `${width}px`;
+  gust.style.height = `${height}px`;
+  gust.style.opacity = opacity;
+  gust.style.animationDuration = `${duration}s`;
+
+  windContainer.appendChild(gust);
+
+  gust.addEventListener("animationend", () => {
+    gust.remove();
+  });
+}

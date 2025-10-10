@@ -196,6 +196,9 @@ p {
 .m-3 {
   margin: 20px;
 }
+.mt--2 {
+  margin-top: -20px !important;
+}
 .mt-0 {
   margin-top: 0px !important;
 }
@@ -203,7 +206,7 @@ p {
   margin-top: 5px !important;
 }
 .mt-2 {
-  margin-top: 10px !important;
+  margin-top: 20px !important;
 }
 .mt-3 {
   margin-top: 100px !important;
@@ -225,12 +228,15 @@ p {
 }
 /*** Fixed Transform ***/
 .lb-corner {
-  top: 98vw;
+  top: 90%;
   left: 0px;
+}
+.click {
+  left: calc(100% - 30px);
+  top: calc(100% + 10px);
 }
 
 /*** z-index ***/
-
 .z-1 {
   z-index: 1;
 }
