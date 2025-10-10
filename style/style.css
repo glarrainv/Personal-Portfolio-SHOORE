@@ -114,6 +114,9 @@ p {
 .button:hover {
   transform: scale(1.2);
 }
+.icon {
+  cursor: pointer;
+}
 /** Sizing **/
 .w-30 {
   width: 30% !important;

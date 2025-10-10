@@ -99,7 +99,7 @@ function DiffIncrease() {
   //Constants
   const startw = 20;
   const barColors = ["#62d719", "#b5ef18", "#efdd18", "#ef9518", "#ef3818"];
-  const barDiffs = ["easy", "medium", "hard", "impossible", "what"];
+  const barDiffs = ["Easy", "Medium", "Hard", "Impossible", "WHAT?"];
   const descDiffs = [
     `
 Chilean International Student </br>
