@@ -170,6 +170,9 @@ p {
 .pos-abs {
   position: absolute;
 }
+.algn-cent {
+  margin-top: 5%;
+}
 
 /*** Paddings & Margins ***/
 .p-1 {
@@ -222,6 +225,9 @@ p {
 }
 .mb-3 {
   margin-bottom: 20px;
+}
+.ml-3 {
+  margin-left: 20px;
 }
 .mr-3 {
   margin-right: 20px;
