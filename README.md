@@ -4,7 +4,7 @@
 
 </br>
 
-# **[![SHOORE Badge](https://img.shields.io/badge/shoore-DEV-fffbde?style=plastic&label=SHOORE&labelColor=fffbde&color=749bc2&link=https%3A%2F%2Fshoore.dev%2F)](https://larrain.pro) - Gaspar's Personal Portfolio**   
+# **[![SHOORE Badge](https://img.shields.io/badge/shoore-DEV-fffbde?style=plastic&label=SHOORE&labelColor=fffbde&color=749bc2&link=https%3A%2F%2Fshoore.dev%2F)](https://larrain.pro) - Gaspar's Personal Portfolio**
 
 <a> [![Forks][forks-shield]][forks-url] </a>
 <a> [![Stargazers][stars-shield]][stars-url] </a>
