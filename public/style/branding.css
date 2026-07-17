@@ -1,0 +1,96 @@
+:root {
+  --lightyellow: #fffbde;
+  --paleblue: #c9e1f3;
+  --lightblue: #91c8e4;
+  --grayblue: #749bc2;
+  --steel: #4682a9;
+  --darkblue: #12517a;
+  --black: #0a0909;
+  --white: #fff;
+  --box-shadow:
+    rgb(0 0 0 / 9%) 0px 2px 1px, rgb(0 0 0 / 9%) 0px 4px 2px,
+    rgb(0 0 0 / 9%) 0px 8px 4px, rgb(0 0 0 / 9%) 0px 16px 8px,
+    rgb(0 0 0 / 9%) 0px 32px 16px;
+  --sticker-shadow: 3px 3px 0 var(--black);
+}
+
+.lightyellow {
+  color: var(--lightyellow) !important;
+}
+
+.lightblue {
+  color: var(--lightblue) !important;
+}
+
+.grayblue {
+  color: var(--grayblue) !important;
+}
+
+.darkblue {
+  color: var(--darkblue) !important;
+}
+
+.white {
+  color: var(--white) !important;
+}
+
+.lightyellowbg {
+  background-color: var(--lightyellow);
+}
+
+.lightbluebg {
+  background-color: var(--lightblue);
+}
+
+.graybluebg {
+  background-color: var(--grayblue);
+}
+
+.palebluebg {
+  background-color: var(--paleblue);
+}
+
+.darkbluebg {
+  background-color: var(--darkblue);
+}
+
+.whitebg {
+  background-color: var(--white);
+}
+
+.border {
+  border: var(--black) 5px solid;
+  border-radius: 5px;
+}
+
+.shade {
+  border-radius: 20px;
+  box-shadow: var(--box-shadow);
+}
+
+.pill {
+  box-shadow: var(--box-shadow);
+  border-radius: 500px;
+  padding: 3px 12px;
+}
+
+.circle {
+  border: var(--black) 3px solid;
+  border-radius: 50%;
+  width: 34px;
+  height: 34px;
+}
+
+.text {
+  color: var(--black);
+  text-align: center;
+}
+
+.tl {
+  text-align: justify !important;
+}
+
+.frow {
+  display: flex;
+  flex-direction: row;
+}

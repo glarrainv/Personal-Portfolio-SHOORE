@@ -1,0 +1,35 @@
+name: Lint
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      # --ignore-scripts skips husky's `prepare`, which has no git hooks to install on CI.
+      - run: npm ci --ignore-scripts
+
+      # Each linter is its own step so a failure names the language that broke.
+      - name: JavaScript (eslint)
+        run: npm run lint:js
+
+      - name: CSS (stylelint)
+        run: npm run lint:css
+
+      - name: HTML (html-validate)
+        run: npm run lint:html
+
+      - name: Formatting (prettier)
+        run: npm run lint:format

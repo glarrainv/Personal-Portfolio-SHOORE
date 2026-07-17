@@ -7,7 +7,6 @@ function Snap() {
   console.log(currentScrollY / windowSize);
   const currentSlide = Math.round(currentScrollY / windowSize, 0);
   console.log(currentSlide);
-  const Sections = ["Page", "Content", "Project"];
   stopAnimation();
 
   if (currentSlide == 0) {

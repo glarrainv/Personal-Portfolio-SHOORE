@@ -1,7 +1,5 @@
 var animationFrameId;
 var time = 0;
-var IntervalChange;
-var SlideShowInterval;
 
 function delay(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -16,16 +14,16 @@ async function Show(els) {
 }
 
 function stopAnimation() {
-  if (!animationFrameId && !IntervalChange) {
+  if (!animationFrameId) {
     console.log("No animationFrame");
   } else {
     try {
       cancelAnimationFrame(animationFrameId);
-      clearInterval(IntervalChange);
-      clearInterval(SlideShowInterval);
       animationFrameId = null;
       console.log("Animation stopped.");
-    } catch {}
+    } catch {
+      // Frame already released; nothing left to cancel.
+    }
   }
 }
 
@@ -35,7 +33,6 @@ function animateWave(id, amplitude, frequency) {
     return baseY + Math.sin(time * freq + phase) * amp;
   }
 
-  console.log("run");
   ////Wave Variables
   const wavePath = document.querySelector(`#${id}`);
   const baseCommands = wavePath.getPathData();
@@ -55,20 +52,20 @@ function animateWave(id, amplitude, frequency) {
     initCrv1CtrlPt1_Y,
     time,
     frequency[0],
-    amplitude[0]
+    amplitude[0],
   );
   currentCCommand[3] = calculateWavePoint(
     initCrv1CtrlPt2_Y,
     time,
     frequency[1],
-    amplitude[1]
+    amplitude[1],
   );
 
   currentSCommand[1] = calculateWavePoint(
     initCrv2CtrlPt2_Y,
     time,
     frequency[2],
-    amplitude[2]
+    amplitude[2],
   );
 
   time += 1;
@@ -78,72 +75,114 @@ function animateWave(id, amplitude, frequency) {
     animateWave(id, amplitude, frequency);
   });
 }
+
 // Name Difficulty
-var CurrentDiff;
-var clickHintAnimationFrameId;
+var CurrentDiff = 1;
 
 function animateClickHint() {
-  const clickSvg = document.getElementById("clicksvg");
-  if (clickSvg) {
-    clickSvg.classList.add("click-animation");
+  const hint = document.getElementById("clickhint");
+  if (hint) {
+    hint.classList.add("click-animation");
   }
 }
 
 function stopClickHintAnimation() {
-  const clickSvg = document.getElementById("clicksvg");
-  if (clickSvg) {
-    clickSvg.classList.remove("click-animation");
+  const hint = document.getElementById("clickhint");
+  if (hint) {
+    hint.classList.remove("click-animation");
   }
 }
+
+/* Difficulty ladder — brand palette, shallow to deep water */
+const barColors = [
+  "var(--paleblue)",
+  "var(--lightblue)",
+  "var(--grayblue)",
+  "var(--steel)",
+  "var(--darkblue)",
+];
+const barDiffs = ["Easy", "Medium", "Hard", "Impossible", "WHAT"];
+const pillPalette = ["lightyellowbg", "whitebg", "palebluebg"];
+
+/* Split all experiences into 5 sequential groups; remainders fill earlier groups first */
+function experienceGroups(experiences) {
+  const groups = [];
+  const base = Math.floor(experiences.length / 5);
+  const remainder = experiences.length % 5;
+  let index = 0;
+  for (let g = 0; g < 5; g++) {
+    const size = base + (g < remainder ? 1 : 0);
+    groups.push(experiences.slice(index, index + size));
+    index += size;
+  }
+  return groups;
+}
+
+/* Experience pills from the Cloudflare worker (set by NotionProjects.js) */
+/* One unique group per difficulty level */
+let statusls = {};
+function renderExperiences() {
+  const box = document.getElementById("expbox");
+  const experiences = window.EXPERIENCES;
+  if (!box || !experiences) return;
+
+  const shown = experienceGroups(experiences)[CurrentDiff] || [];
+
+  box.innerHTML = "";
+  shown.forEach((exp, i) => {
+    if (!statusls[exp.status]) {
+      const bg =
+        pillPalette[Object.values(statusls).length % (pillPalette.length + 1)];
+      console.log("New status found:", exp.status, ", Color: ", bg);
+      statusls[exp.status] = bg;
+    }
+    const pill = document.createElement("div");
+    pill.className = `exp-pill fade-in pill ${statusls[exp.status]}`;
+    pill.style.animationDelay = `${i * 60}ms`;
+
+    const role = document.createElement("strong");
+    role.className = "exp-role";
+    role.textContent = exp.role;
+    pill.appendChild(role);
+
+    if (exp.company && exp.company !== "N/A") {
+      const company = document.createElement("span");
+      company.className = "exp-co";
+      company.textContent = exp.company;
+      pill.appendChild(company);
+    }
+
+    const status = document.createElement("em");
+    status.className = "exp-status";
+    status.textContent = exp.status;
+    pill.appendChild(status);
+
+    box.appendChild(pill);
+  });
+}
+document.addEventListener("experiences-ready", renderExperiences);
+
 function DiffIncrease() {
   //Constants
   const startw = 20;
-  const barColors = ["#62d719", "#b5ef18", "#efdd18", "#ef9518", "#ef3818"];
-  const barDiffs = ["Easy", "Medium", "Hard", "Impossible", "WHAT"];
-  const descDiffs = [
-    `
-Chilean International Student </br>
-Technology Nerd </br>
-20 year old </br>
-    `,
-    `
-University of Notre Dame Sophomore </br>
-Business Analytics Major </br>
-Chinese & Computing and Digital Technologies Minor </br>
-    `,
-    `
-Data Club Event Planning Co-Director </br>
-Coding 4 Good Developer </br>
-Hesburgh Digital Research Award Recipient </br>`,
-    `
-    Badminton Club Tournament Travel Team Member </br>
-    Founder of Redreport Campus Safety Tool </br> 
-    Working at Hesburgh Libraries Circulation Desk </br> 
-    `,
-    `
-    Struggling with my Chinese homework (Again)</br>
-    Carrying an Idea Notebook At All Times</br> 
-    Most Likely Studying with my Girlfriend</br> 
-    `,
-  ];
   const diffbar = document.getElementById("diffbar");
   const currentWidthStr = diffbar.style.width;
 
   //Get Int from String
-  var currentWidth = parseInt(currentWidthStr.trimEnd("%"));
+  var currentWidth = parseInt(currentWidthStr);
   //Current Diff checking
   if (!currentWidthStr || CurrentDiff == 1) {
     CurrentDiff = 2;
     currentWidth = startw;
   } else if (CurrentDiff == 4) {
-    var nametohide = document.querySelectorAll(".hide");
-    Array.from(nametohide).map((elem) => {
+    const nametohide = document.querySelectorAll(".hide");
+    Array.from(nametohide).forEach((elem) => {
       elem.classList.add("transp");
     });
     CurrentDiff = 0;
     currentWidth = startw / 2;
   } else if (CurrentDiff == 0) {
-    var nametohide = document.querySelector("." + barDiffs[CurrentDiff]);
+    const nametohide = document.querySelector("." + barDiffs[CurrentDiff]);
     nametohide.classList.add("transp");
     CurrentDiff++;
   } else {
@@ -151,15 +190,15 @@ Hesburgh Digital Research Award Recipient </br>`,
   }
   var nametoshow = document.querySelector("." + barDiffs[CurrentDiff]);
   var label = document.querySelector("#diflabel");
-  var desc = document.querySelector("#difdesc");
   label.innerHTML = "Name Difficulty: " + barDiffs[CurrentDiff];
-  desc.innerHTML = descDiffs[CurrentDiff];
   if (nametoshow) nametoshow.classList.remove("transp");
   const intervals = 10 * CurrentDiff;
   diffbar.style.backgroundColor = barColors[CurrentDiff];
   // Setting
   currentWidth += intervals;
   diffbar.style.width = `${currentWidth}%`;
+
+  renderExperiences();
 }
 
 function RandomNum(max, min, dec) {

@@ -5,25 +5,35 @@
   "type": "module",
   "scripts": {
     "dev": "vite --host",
-    "dev:full": "concurrently \"node server.js\" \"vite --host\"",
-    "build": "vite build",
-    "preview": "vite preview"
+    "build": "node build.mjs",
+    "preview": "vite preview",
+    "lint": "run-p --continue-on-error --aggregate-output lint:*",
+    "lint:js": "eslint .",
+    "lint:css": "stylelint \"public/**/*.css\"",
+    "lint:html": "html-validate \"public/**/*.html\"",
+    "lint:format": "prettier --check .",
+    "fix": "run-s fix:js fix:css fix:format",
+    "fix:js": "eslint . --fix",
+    "fix:css": "stylelint \"public/**/*.css\" --fix",
+    "fix:format": "prettier --write .",
+    "prepare": "husky"
   },
   "devDependencies": {
-    "concurrently": "^8.0.0",
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.7.0",
+    "globals": "^17.7.0",
+    "html-validate": "^11.5.6",
+    "husky": "^9.1.7",
+    "npm-run-all2": "^9.0.2",
+    "prettier": "^3.9.5",
+    "stylelint": "^17.14.0",
+    "stylelint-config-standard": "^40.0.0",
+    "stylelint-declaration-strict-value": "^1.11.1",
     "vite": "^6.0.5"
   },
   "dependencies": {
-    "@notionhq/client": "^4.0.2",
-    "@vercel/analytics": "^1.4.1",
-    "@vercel/speed-insights": "^1.2.0",
     "bootstrap": "^5.3.3",
-    "build": "^0.1.4",
-    "cors": "^2.8.5",
-    "dotenv": "^17.2.1",
-    "express": "^4.21.2",
     "path-data-polyfill": "^1.0.10",
-    "react": "^19.1.0",
-    "vercel": "^25.2.0"
+    "react": "^19.1.0"
   }
 }

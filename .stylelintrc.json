@@ -1,0 +1,28 @@
+{
+  "extends": ["stylelint-config-standard"],
+  "plugins": ["stylelint-declaration-strict-value"],
+  "rules": {
+    "scale-unlimited/declaration-strict-value": [
+      ["/color/", "fill", "stroke"],
+      {
+        "ignoreKeywords": ["transparent", "currentColor", "inherit", "none"],
+        "disableFix": true,
+        "message": "Use a brand palette custom property from branding.css (e.g. var(--steel)) instead of a literal value for \"${property}\"."
+      }
+    ],
+    "custom-property-pattern": null,
+    "selector-class-pattern": null,
+    "selector-id-pattern": null,
+    "keyframes-name-pattern": null,
+    "no-descending-specificity": null
+  },
+  "overrides": [
+    {
+      "files": ["public/style/branding.css"],
+      "rules": {
+        "scale-unlimited/declaration-strict-value": null
+      }
+    }
+  ],
+  "ignoreFiles": ["dist/**", "node_modules/**"]
+}
