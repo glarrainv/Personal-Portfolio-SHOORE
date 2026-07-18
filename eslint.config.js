@@ -1,7 +1,6 @@
 import js from "@eslint/js";
 import globals from "globals";
 
-
 const sharedBrowserGlobals = {
   // Anims.js
   animateWave: "writable",
