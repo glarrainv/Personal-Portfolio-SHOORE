@@ -211,7 +211,11 @@ function floatElement(project) {
     el.classList.add("has-media");
     const media = document.createElement("div");
     media.className = "float-media";
-    media.style.backgroundImage = `url('${project.image}')`;
+    const img = document.createElement("img");
+    img.className = "float-media-img";
+    img.src = project.image;
+    img.alt = project.title || "";
+    media.appendChild(img);
     el.appendChild(media);
   } else {
     const title = document.createElement("h4");
@@ -231,7 +235,7 @@ function floatElement(project) {
 
   const status = document.createElement("span");
   status.className = "float-status";
-  status.textContent = `In progress · ${formatRange(project)}`;
+  status.textContent = `${formatRange(project)}`;
   el.appendChild(status);
 
   makeLink(el, project.projectLink);

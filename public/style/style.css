@@ -25,6 +25,11 @@ section {
   display: flow-root;
 }
 
+#Content {
+  padding-top: 20vh;
+  display: flow-root;
+}
+
 #Progress {
   height: 100%;
   display: flow-root;
@@ -120,6 +125,10 @@ p {
   .row {
     display: flex;
     flex-direction: column;
+  }
+
+  .name-hero {
+    font-size: clamp(1.6rem, 9vw, 2.4rem);
   }
 }
 
@@ -335,29 +344,6 @@ p {
 
 /* Section Specific */
 
-/** Section 2 - Developer Profile **/
-
-/*** Animated Profile Pic ***/
-.sqr-dev {
-  width: 10vw;
-  height: 15vw;
-  max-height: 155px;
-  max-width: 100px;
-  margin: 5px;
-  transition: transform 1.8s ease;
-  border-radius: 5px;
-  position: relative !important;
-  z-index: 2 !important;
-}
-
-#profile {
-  max-height: 300px;
-  padding-bottom: 20vw;
-  margin: -5vw 5vw 0 0;
-  position: relative !important;
-  z-index: 2 !important;
-}
-
 /** Section 2 - About Me **/
 
 /*** Slider ***/
@@ -367,6 +353,7 @@ p {
   justify-content: center;
   align-items: center;
   gap: 12px;
+  max-width: 100%;
   box-sizing: border-box;
 }
 
@@ -377,11 +364,14 @@ p {
 }
 
 .name-hero {
+  max-width: 100%;
   font-size: calc(1.6rem + 3.2vw);
   font-weight: 800;
   line-height: 1.15;
   letter-spacing: 0.03em;
   text-wrap: balance;
+  overflow-wrap: anywhere;
+  box-sizing: border-box;
 }
 
 .name-hero .gimmick-letter {
@@ -536,16 +526,17 @@ p {
 /** Section 4 - Current Projects **/
 #Progress .grid {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 38px;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: stretch;
+  gap: 28px;
   padding: 26px 6vw 50px;
   box-sizing: border-box;
 }
 
 .float {
   position: relative;
-  width: min(760px, 92vw);
+  width: min(340px, 86vw);
   padding: 18px 22px;
   background-color: var(--grayblue);
   color: var(--lightyellow);
@@ -561,8 +552,8 @@ p {
 /*** Media Projects ***/
 .float.has-media {
   padding: 20px;
-  width: min(420px, 80vw) !important;
-  background-color: var(--white) !important;
+  background-color: var(--white);
+  color: var(--black);
   border-radius: 34px;
   box-shadow: var(--box-shadow);
 }
@@ -588,10 +579,18 @@ p {
   font-size: calc(0.8rem + 0.3vw);
 }
 
+.float .chip {
+  box-shadow: none !important;
+  background-color: var(--paleblue);
+  color: var(--black);
+}
+
 .float-status {
-  background-color: var(--darkblue);
-  color: var(--white);
-  padding: 4px min(50px, 80%);
+  background-color: var(--white);
+  color: var(--black);
+  box-shadow: var(--box-shadow);
+  margin-top: auto;
+  padding: 6px 18px;
   font-size: 0.7rem;
   border-radius: 100px;
   font-weight: 700;
@@ -603,8 +602,20 @@ p {
   width: min(420px, 100%);
   height: 210px;
   background-color: var(--white);
-  background-size: cover;
-  background-position: center;
+  border-radius: 24px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.float-media-img {
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  display: block;
 }
 
 /** Footer **/

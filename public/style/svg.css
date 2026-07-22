@@ -19,18 +19,16 @@
 
 .wave-container2 {
   overflow: hidden;
-  height: 90vh;
-  width: 100vw;
+  height: 90%;
+  width: 100%;
   position: absolute;
-  left: 0;
-  bottom: calc(var(--vh) * -1.14);
+  bottom: calc(-1 * var(--vh) - 20vh);
 }
 
 .wave2 {
   position: absolute;
-  left: 0;
-  bottom: calc(var(--vh) * -0.04);
   object-fit: cover;
+  width: 100%;
   min-height: 100%;
   overflow-x: hidden;
 }
