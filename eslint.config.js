@@ -8,6 +8,7 @@ const sharedBrowserGlobals = {
   animateClickHint: "writable",
   stopClickHintAnimation: "writable",
   DiffIncrease: "writable",
+  humanDiffIncrease: "writable",
   createGust: "writable",
   RandomNum: "writable",
   ScrollIntoView: "writable",

@@ -1,18 +1,11 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="Generate free Kaggle badges and stat cards for GitHub READMEs. This free API, sponsored by SHOORE, offers shields.io SVG badges with statistics on Kaggle databases and notebooks."
-    />
-    <meta name="author" content="Gaspar Larrain" />
-    <meta name="theme-color" content="#749BC2" />
-
     <!-- Page Settings -->
     <meta charset="UTF-8" />
-    <title>SHOORE — Gaspar's Portfolio and Commitment</title>
+    <title>SHOORE — Gaspar's Portfolio</title>
+    <meta name="author" content="Gaspar Larrain" />
+    <meta name="theme-color" content="#749BC2" />
     <meta name="title" content="SHOORE — Gaspar's Portfolio" />
     <meta
       name="description"
@@ -75,8 +68,10 @@
             "@type": "ProfilePage",
             "@id": "https://larrain.pro/#webpage",
             "url": "https://larrain.pro/",
-            "name": "Gaspar Larrain - Development Portfolio",
+            "name": "SHOORE — Gaspar's Portfolio",
             "description": "Portfolio for Gaspar Larrain, showcasing his development and analytical skills through personal brand design.",
+            "inLanguage": "en",
+            "dateModified": "2026-08-04T14:30:00-05:00",
             "isPartOf": {
               "@id": "https://larrain.pro/#website"
             },
@@ -88,7 +83,9 @@
             "@type": "WebSite",
             "@id": "https://larrain.pro/#website",
             "url": "https://larrain.pro/",
-            "name": "SHOORE - Gaspar's Portfolio",
+            "name": "SHOORE",
+            "alternateName": "Gaspar Larrain",
+            "inLanguage": "en",
             "publisher": {
               "@id": "https://larrain.pro/#person"
             }
@@ -100,17 +97,24 @@
             "url": "https://larrain.pro/",
             "jobTitle": "Business Analytics Student",
             "description": "Data analyst, software developer and product manager recognized by various academic and professional organizations.",
+            "nationality": {
+              "@type": "Country",
+              "name": "Chile",
+              "sameAs": "https://en.wikipedia.org/wiki/Chile"
+            },
+            "affiliation": {
+              "@type": "CollegeOrUniversity",
+              "@id": "https://www.nd.edu/#organization",
+              "name": "University of Notre Dame",
+              "url": "https://www.nd.edu/",
+              "sameAs": "https://en.wikipedia.org/wiki/University_of_Notre_Dame"
+            },
             "sameAs": [
               "https://www.linkedin.com/in/gdlarrainv/",
               "https://github.com/glarrainv",
               "https://www.kaggle.com/gasparlarrainvaras",
-              "https://scholar.google.com/citations?hl=en&authuser=2&user=f7pKfbMAAAAJ"
+              "https://scholar.google.com/citations?user=f7pKfbMAAAAJ"
             ],
-            "affiliation": {
-              "@type": "Organization",
-              "name": "University of Notre Dame",
-              "url": "https://www.nd.edu/"
-            },
             "knowsAbout": [
               "Data Analytics",
               "Product Management",
@@ -118,6 +122,23 @@
               "Embeddings",
               "AI Safety",
               "Education"
+            ],
+            "knowsLanguage": [
+              {
+                "@type": "Language",
+                "name": "Spanish",
+                "alternateName": "es"
+              },
+              {
+                "@type": "Language",
+                "name": "English",
+                "alternateName": "en"
+              },
+              {
+                "@type": "Language",
+                "name": "Mandarin Chinese",
+                "alternateName": "cmn"
+              }
             ]
           }
         ]
@@ -126,7 +147,7 @@
 
     <meta
       name="viewport"
-      content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no"
+      content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"
     />
 
     <!-- Styling CSS Files -->
@@ -154,7 +175,7 @@
   >
     <main>
       <!-- Header Section -->
-      <section id="Page" class="graybluebg">
+      <section id="Page" class="primarybg">
         <div class="justify-content-center cont">
           <div
             id="social-media"
@@ -167,7 +188,7 @@
               viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg"
               onclick="window.open('https://github.com/glarrainv', '_blank')"
-              class="p-2 lightyellow icon"
+              class="p-2 icon"
             >
               <title>GitHub</title>
               <path
@@ -198,15 +219,26 @@
             </svg>
           </div>
           <div class="z-2 algn-cent">
-            <h1 class="xxl lightyellow w-100 m-1 pt-3">
+            <h2 class="xxl secondary w-100 m-1 pt-3">
               SHOORE <span class="text"><br />Safe At Shore</span>
-            </h1>
-            <div class="divisor-head lightyellowbg"></div>
-            <h2 class="lightyellow m m-2">
-              <span class="text">not just a</span> portfolio,
-              <br />
-              but brand of<span class="text"> empowerment</span>
             </h2>
+            <div class="divisor-head secondarybg"></div>
+            <h5 class="secondary m m-2">
+              <span class="text">Gaspar's</span> portfolio.
+              <br />
+              A personal brand <span class="text"> to be proud of.</span>
+            </h5>
+          </div>
+          <div id="company-hero" class="company-hero d-none" aria-live="polite">
+            <img id="company-logo" class="company-logo" alt="" />
+            <button
+              id="company-scroll"
+              class="company-scroll"
+              type="button"
+              aria-label="Scroll to About Me"
+            >
+              <span aria-hidden="true">↓</span>
+            </button>
           </div>
           <div class="wave-container z-1">
             <svg
@@ -225,20 +257,18 @@
         </div>
       </section>
       <!-- Developer Profile Section -->
-      <section id="Content" class="lightyellowbg">
+      <section id="Content" class="secondarybg">
         <div class="justify-content-center row cont">
           <div id="info" class="pos-rel p-3 mw-40 z-2 about-inner">
-            <h3 class="eyebrow sm text m-0">About Me</h3>
-            <h4 class="name-hero text m-0">
+            <h2 class="eyebrow sm text m-0">About Me</h2>
+            <h3 class="name-hero text m-0">
               <span class="name-part"
                 >Gasp<span class="Medium hide">a</span
                 ><span class="transp Easy hide gimmick-letter">e</span>r</span
-              ><span class="transp WHAT hide name-part surname"
-                >&nbsp;Dario</span
-              ><span class="transp Hard hide name-part surname"
-                >&nbsp;Larrain</span
-              ><span class="transp Impossible hide name-part surname"
-                >&nbsp;Varas</span
+              ><span class="transp WHAT hide name-part surname"> Dario</span
+              ><span class="transp Hard hide name-part surname"> Larrain</span
+              ><span class="transp Impossible hide name-part surname">
+                Varas</span
               >
             </h3>
             <p class="text sm fw-light tagline m-0">
@@ -251,10 +281,10 @@
                 role="button"
                 tabindex="0"
                 aria-label="Increase name difficulty"
-                onpointerdown="DiffIncrease(); stopClickHintAnimation()"
+                onpointerdown="humanDiffIncrease(); stopClickHintAnimation()"
                 onkeydown="
                   if (event.key === 'Enter') {
-                    DiffIncrease();
+                    humanDiffIncrease();
                     stopClickHintAnimation();
                   }
                 "
@@ -284,11 +314,8 @@
         </div>
       </section>
       <!-- Complete Projects Section -->
-      <section id="Projects" class="snap graybluebg mt-3">
+      <section id="Projects" class="snap primarybg mt-3">
         <h3 class="l text mt-3 m-0">Complete Projects</h3>
-        <p class="text sm fw-light m-1">
-          <i>washed ashore, polished &amp; done</i>
-        </p>
         <div class="grid">
           <!-- Projects-->
         </div>
@@ -305,11 +332,8 @@
         </div>
       </section>
       <!-- Current Projects Section -->
-      <section id="Progress" class="snap lightyellowbg">
+      <section id="Progress" class="snap secondarybg">
         <h3 class="l text mt-2 m-0">Current Projects</h3>
-        <p class="text sm fw-light m-1">
-          <i>still out at sea — drifting home</i>
-        </p>
         <div class="grid">
           <!-- Projects-->
         </div>
@@ -327,12 +351,11 @@
       </section>
     </main>
     <!-- Footer -->
-    <footer class="darkbluebg site-footer">
-      <h4 class="lightyellow footer-brand m-0">SHOORE</h4>
-      <p class="white footer-tag m-0">
-        safe at shore — not just a portfolio, but a brand of empowerment
+    <footer class="steelbg site-footer">
+      <h4 class="secondary footer-brand m-0">SHOORE</h4>
+      <p class="black footer-tag m-0">
+        I am SHOORE. All my work reflects that.
       </p>
-      <p class="white footer-copy m-5">© 2026 Gaspar Larrain</p>
       <div class="footer-links">
         <a
           class="footer-pill pill"
@@ -349,6 +372,7 @@
           >LinkedIn</a
         >
       </div>
+      <p class="black footer-copy m-5">© 2026 Gaspar Larrain</p>
     </footer>
     <!-- External Libraries-->
     <script

@@ -78,6 +78,21 @@ function animateWave(id, amplitude, frequency) {
 
 // Name Difficulty
 var CurrentDiff = 1;
+const DIFFICULTY_AUTO_ADVANCE_MS = 3000;
+let difficultyAutoAdvanceTimer;
+
+function scheduleDifficultyAutoAdvance() {
+  window.clearTimeout(difficultyAutoAdvanceTimer);
+  difficultyAutoAdvanceTimer = window.setTimeout(() => {
+    DiffIncrease();
+    scheduleDifficultyAutoAdvance();
+  }, DIFFICULTY_AUTO_ADVANCE_MS);
+}
+
+function humanDiffIncrease() {
+  DiffIncrease();
+  scheduleDifficultyAutoAdvance();
+}
 
 function animateClickHint() {
   const hint = document.getElementById("clickhint");
@@ -95,14 +110,13 @@ function stopClickHintAnimation() {
 
 /* Difficulty ladder — brand palette, shallow to deep water */
 const barColors = [
-  "var(--paleblue)",
-  "var(--lightblue)",
-  "var(--grayblue)",
-  "var(--steel)",
-  "var(--darkblue)",
+  "var(--light)",
+  "var(--primary)",
+  "var(--primary)",
+  "var(--primary)",
+  "var(--dark)",
 ];
 const barDiffs = ["Easy", "Medium", "Hard", "Impossible", "WHAT"];
-const pillPalette = ["lightyellowbg", "whitebg", "palebluebg"];
 
 /* Split all experiences into 5 sequential groups; remainders fill earlier groups first */
 function experienceGroups(experiences) {
@@ -121,6 +135,17 @@ function experienceGroups(experiences) {
 /* Experience pills from the Cloudflare worker (set by NotionProjects.js) */
 /* One unique group per difficulty level */
 let statusls = {};
+function statusPillTheme(status) {
+  const key = String(status || "Unspecified")
+    .trim()
+    .toLocaleLowerCase();
+  if (!statusls[key]) {
+    const themes = ["status-pill-light", "status-pill-dark"];
+    statusls[key] = themes[Object.keys(statusls).length % themes.length];
+  }
+  return statusls[key];
+}
+
 function renderExperiences() {
   const box = document.getElementById("expbox");
   const experiences = window.EXPERIENCES;
@@ -130,14 +155,8 @@ function renderExperiences() {
 
   box.innerHTML = "";
   shown.forEach((exp, i) => {
-    if (!statusls[exp.status]) {
-      const bg =
-        pillPalette[Object.values(statusls).length % (pillPalette.length + 1)];
-      console.log("New status found:", exp.status, ", Color: ", bg);
-      statusls[exp.status] = bg;
-    }
     const pill = document.createElement("div");
-    pill.className = `exp-pill fade-in pill ${statusls[exp.status]}`;
+    pill.className = `exp-pill fade-in pill ${statusPillTheme(exp.status)}`;
     pill.style.animationDelay = `${i * 60}ms`;
 
     const role = document.createElement("strong");
@@ -201,6 +220,8 @@ function DiffIncrease() {
   renderExperiences();
 }
 
+scheduleDifficultyAutoAdvance();
+
 function RandomNum(max, min, dec) {
   return Math.round(Math.random() * (max - min), dec) + min;
 }
@@ -211,7 +232,7 @@ function ScrollIntoView(id) {
 function createGust() {
   const windContainer = document.getElementById("Page");
   const gust = document.createElement("div");
-  gust.className = "wind-gust";
+  gust.className = "wind-gust lightbg";
 
   const yPosition = Math.random() * window.innerHeight;
   const width = Math.random() * 150 + 50;
