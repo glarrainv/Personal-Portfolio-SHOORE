@@ -26,7 +26,7 @@ section {
 }
 
 #Content {
- padding: 20vh 0 20vh 0;
+  padding: 20vh 0;
   height: 100%;
   display: flow-root;
 }
@@ -442,7 +442,7 @@ p {
 }
 
 .name-hero .surname {
-  color: var(--primary);
+  color: var(--dark);
 }
 
 .tagline {
@@ -816,6 +816,8 @@ p {
 .project-date {
   padding: 7px 12px;
   font-size: 0.65rem;
+  text-align: center;
+  justify-content: center;
   font-weight: 700;
   letter-spacing: 0.09em;
   text-transform: uppercase;
@@ -825,7 +827,9 @@ p {
   display: inline-flex;
   align-items: center;
   min-height: 38px;
-  padding: 0 16px;
+  width: 40%;
+  text-align: center;
+  justify-content: center;
   font-size: 0.78rem;
   font-weight: 700;
   text-decoration: none;
